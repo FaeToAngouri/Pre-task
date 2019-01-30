@@ -1,4 +1,4 @@
-package Pre-task;
+package questions;
 
 public class question2 {
 
