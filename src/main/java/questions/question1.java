@@ -1,6 +1,5 @@
 package questions;
 
-
 import java.util.*;
 
 public class question1 {
@@ -21,36 +20,36 @@ public class question1 {
             return null;
         }
 
-        Map<String, Integer> kmers = new HashMap<>();
-        List<String> collection = new ArrayList<>();
+        Map<String, Integer> mapKmers = new HashMap<>();
+        List<String> listKmers = new ArrayList<>();
         Set<String> freqKmers = new HashSet<>();
 
-        // Create k-mer substrings and assign them to a hashmap
-        // that tracks the frequency of occurrence
+        // Create all k-mer substrings and assign them to a
+        // hashmap that tracks the frequency of occurrence
         for (int i = 0; i < dna.length() - (k - 1); i++) {
             String string = dna.substring(i, (i + (k)));
-            if (!kmers.containsKey(string)) {
-                kmers.put(string, 1);
-                collection.add(string);
+            if (!mapKmers.containsKey(string)) {
+                mapKmers.put(string, 1);
+                listKmers.add(string);
             }
             else {
-                int hold = kmers.get(string);
+                int hold = mapKmers.get(string);
                 hold++;
-                kmers.put(string, hold);
+                mapKmers.put(string, hold);
             }
         }
 
         // Find the maximum frequency of all k-mers
         int max = 1;
-        for (String s : collection) {
-            if (kmers.get(s) > max) {
-                max = kmers.get(s);
+        for (String s : listKmers) {
+            if (mapKmers.get(s) > max) {
+                max = mapKmers.get(s);
             }
         }
 
         // Find the k-mers with the maximum frequency
-        for (String s : collection) {
-            if (kmers.get(s) == max) {
+        for (String s : listKmers) {
+            if (mapKmers.get(s) == max) {
                 freqKmers.add(s);
             }
         }

@@ -1,54 +1,52 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import questions.coordinate;
 
-import java.util.HashSet;
+import java.util.*;
 
 import static questions.question1.freqKmer;
+import static questions.question2.matchKmer;
 
 public class tests {
 
     //Tests for Question 1
     @Test
     public void test1_1() {
-        boolean assertion = false;
         String dna = "ACAACTATGCATCACTATCGGGAACTATCCT";
         int k = 5;
         HashSet<String> test = new HashSet<>(freqKmer(dna, k));
         HashSet<String> result = new HashSet<>();
         result.add("ACTAT");
-        assertion = test.equals(result);
-        assert(assertion);
+        System.out.println(test);
+        assert(test.equals(result));
     }
 
     @Test
     public void test1_2() {
-        boolean assertion = false;
         String dna = "CGATATATCCATAG";
         int k = 3;
         HashSet<String> test = new HashSet<>(freqKmer(dna, k));
         HashSet<String> result = new HashSet<>();
         result.add("ATA");
-        assertion = test.equals(result);
-        assert(assertion);
+        System.out.println(test);
+        assert(test.equals(result));
     }
 
     @Test
     public void test1_3() {
-        boolean assertion = false;
         String dna = "ACGTTGCATGTCGCATGATGCATGAGAGCT";
         int k = 4;
         HashSet<String> test = new HashSet<>(freqKmer(dna, k));
         HashSet<String> result = new HashSet<>();
         result.add("CATG");
         result.add("GCAT");
-        assertion = test.equals(result);
-        assert(assertion);
+        System.out.println(test);
+        assert(test.equals(result));
     }
 
     @Test
     public void test1_4() {
-        boolean assertion = false;
         String dna = "ACTGAGTG";
         int k = 3;
         HashSet<String> test = new HashSet<>(freqKmer(dna, k));
@@ -59,46 +57,53 @@ public class tests {
         result.add("GAG");
         result.add("AGT");
         result.add("GTG");
-        assertion = test.equals(result);
-        assert(assertion);
+        System.out.println(test);
+        assert(test.equals(result));
     }
 
     @Test
     public void test1_5() {
-        boolean assertion = false;
         String dna = "A";
         int k = 1;
         HashSet<String> test = new HashSet<>(freqKmer(dna, k));
         HashSet<String> result = new HashSet<>();
         result.add("A");
-        assertion = test.equals(result);
-        assert(assertion);
+        System.out.println(test);
+        assert(test.equals(result));
     }
 
     //Tests for Question 2
     @Test
     public void test2_1() {
-        assert(true);
+        String dna1 = "AAACTCATC";
+        String dna2 = "TTTCAAATC";
+        int k = 3;
+        Set<coordinate> test = new HashSet<>(matchKmer(dna1, dna2, k));
+        System.out.println(test);
+        // [(0, 4), (6, 6), (0, 0), (4, 2)]
+        assert(test.size() == 4);
     }
 
     @Test
     public void test2_2() {
-        assert(true);
+        String dna1 = "AGCTAT";
+        String dna2 = "ATAGCG";
+        int k = 3;
+        Set<coordinate> test = new HashSet<>(matchKmer(dna1, dna2, k));
+        System.out.println(test);
+        // [(0, 2), (3, 0)]
+        assert(test.size() == 2);
     }
 
     @Test
     public void test2_3() {
-        assert(true);
-    }
-
-    @Test
-    public void test2_4() {
-        assert(true);
-    }
-
-    @Test
-    public void test2_5() {
-        assert(true);
+        String dna1 = "ACGGTATGACTACGA";
+        String dna2 = "ACGTGAT";
+        int k = 4;
+        Set<coordinate> test = new HashSet<>(matchKmer(dna1, dna2, k));
+        System.out.println(test);
+        // [(8, 3)]
+        assert(test.size() == 1);
     }
 
 }
