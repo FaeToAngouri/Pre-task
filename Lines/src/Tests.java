@@ -7,11 +7,22 @@ import java.util.List;
 public class Tests {
     @Test
     public void Test1 () {
-        List<Slope> slopes = new ArrayList<>();
-        Slope slope1 = new Slope (1.0, 2.0, 3.0, 4.0); // (1 , 3) ~ (2 , 4)
-        Slope slope2 = new Slope (2.0, 3.0, 4.0, 5.0); // (2 , 4) ~ (3 , 5)
-        Prediction prediction = new Prediction(slope1);
-        prediction.addSlope(slope2);
-        assert(prediction.averageSlope(1) == 3);
+        Point point1 = new Point(1, 2);
+        Point point2 = new Point (2, 4);
+        Point point3 = new Point (3, 5);
+        Point point4 = new Point (4, 4);
+        Point point5 = new Point (5, 5);
+
+        List<Point> points = new ArrayList<>();
+
+        points.add(point1);
+        points.add(point2);
+        points.add(point3);
+        points.add(point4);
+        points.add(point5);
+
+        Prediction prediction = new Prediction(points);
+
+        assert(prediction.linearRegressionPrediction(0) == 2.2);
     }
 }
